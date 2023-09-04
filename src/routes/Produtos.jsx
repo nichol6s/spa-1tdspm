@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ListaProdutos } from "../components/ListaProdutos";
+import {GrEdit as Editar} from "react-icons/gr";
 
 export default function Produtos(){
     document.title = "Produtos";
@@ -32,7 +33,7 @@ export default function Produtos(){
                         <td style={estiloDasCelulas}>{item.nome}</td>
                         <td style={estiloDasCelulas}>{item.desc}</td>
                         <td style={estiloDasCelulas}>{item.valor}</td>
-                        <td style={estiloDasCelulas}> <Link to={`/editar/produtos/${item.id}`} >Editar</Link> </td>
+                        <td style={estiloDasCelulas}> <Link to={`/editar/produtos/${item.id}`} > <Editar/></Link> </td>
                     </tr>
                 ))
             }
