@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { ListaProdutos } from "../components/ListaProdutos";
+import classes from "./ExcluirProduto.modules.css"
 
 export default function ExcluirProduto() {
   document.title = "Excluir Produto";
@@ -34,8 +35,8 @@ export default function ExcluirProduto() {
   };
 
   return (
-    <>
-      <div>
+    
+      <div className={classes.container}>
         <h1>Excluir Produto</h1>
         <div>
             <p>Nome : {produto.nome}</p>
@@ -47,6 +48,6 @@ export default function ExcluirProduto() {
             </div>
         </div>
       </div>
-    </>
+    
   );
 }
