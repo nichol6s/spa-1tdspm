@@ -17,13 +17,15 @@ export default function Produtos(){
         </div>
 
         <table style={{border:"2px solid #ccc", borderCollapse:"collapse"}}>
-            <tr>
-                <th>ID</th>
-                <th>NOME</th>
-                <th>DESCRIÇÃO</th>
-                <th>PREÇO</th>
-                <th>EDITAR</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>PREÇO</th>
+                    <th>EDITAR</th>
+                </tr>
+            </thead>
 
             <tbody>
             {
