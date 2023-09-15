@@ -2,14 +2,12 @@ import { Link } from "react-router-dom";
 import { ListaProdutos } from "../components/ListaProdutos";
 import {GrEdit as Editar} from "react-icons/gr";
 import {RiDeleteBin2Fill as Excluir} from "react-icons/ri";
+import style from "./Produtos.module.css"
+
 
 export default function Produtos(){
     document.title = "Produtos";
 
-    const estiloDasCelulas = {
-        border: "2px solid #ccc",
-        fontFamily: "Arial, Trebuchet, sans-serif"
-    }
     return(
         <>
         
@@ -17,7 +15,7 @@ export default function Produtos(){
             <h1>Produtos</h1>    
         </div>
 
-        <table style={{border:"2px solid #ccc", borderCollapse:"collapse"}}>
+        <table className={style.tblEstilo}>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -31,12 +29,12 @@ export default function Produtos(){
             <tbody>
             {
                 ListaProdutos.map((item,indice)=>(
-                    <tr key={indice}>
-                        <td style={estiloDasCelulas}>{item.id}</td>
-                        <td style={estiloDasCelulas}>{item.nome}</td>
-                        <td style={estiloDasCelulas}>{item.desc}</td>
-                        <td style={estiloDasCelulas}>{item.valor}</td>
-                        <td style={estiloDasCelulas}> <Link to={`/editar/produtos/${item.id}`} > <Editar/></Link> | <Link to={`/excluir/produtos/${item.id}`} > <Excluir/></Link></td>
+                    <tr key={indice} className={style.tblLine}>
+                        <td>{item.id}</td>
+                        <td>{item.nome}</td>
+                        <td>{item.desc}</td>
+                        <td>{item.valor}</td>
+                        <td> <Link to={`/editar/produtos/${item.id}`} > <Editar/></Link> | <Link to={`/excluir/produtos/${item.id}`} > <Excluir/></Link></td>
                     </tr>
                 ))
             }

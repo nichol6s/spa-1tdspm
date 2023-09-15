@@ -1,6 +1,6 @@
 //Importando dependências e ou arquivos que vamos utilizar e ou referenciar.
 import Cabecalho from "./components/Cabecalho"
-import Section from "./components/Section"
+//import Section from "./components/Section"
 import Footer from "./components/Footer"
 import { Outlet } from "react-router-dom";
 //import { useState } from "react";
@@ -17,7 +17,7 @@ export default function App(){
 
   return (
     <>
-      <div className="container">
+      <div>
         {/* Isso é um comentário */}
         
         {/* Vamos criar uma cabeçalho com um header, um h1 com um título e uma lista ul com 3 item com link. */}
