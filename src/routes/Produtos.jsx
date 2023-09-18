@@ -3,7 +3,7 @@ import { ListaProdutos } from "../components/ListaProdutos";
 import {GrEdit as Editar} from "react-icons/gr";
 import {RiDeleteBin2Fill as Excluir} from "react-icons/ri";
 import style from "./Produtos.module.css"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function Produtos(){
@@ -13,11 +13,34 @@ export default function Produtos(){
         console.log("Este useEffect renderiza sempre")
     })
 
+    const [counter, setCounter] = useState(0);
+
+    const [listaProdutosLocal, setListaProdutosLocal] = useState([{}]);
+
+    useEffect(()=>{
+        console.log("Este useEffect renderiza apenas uma vez!");
+        setListaProdutosLocal(ListaProdutos);
+    }, [ ]);
+
+    const [counter2, setCounter2] = useState();
+
+    useEffect(()=>{
+        console.log("Este useEffect renderiza sempre que o objeto variável ou elemento que esta sendo monitorado no array de dependências sofra alguma atualização. ");
+    }, [ counter2 ]);
+
     return(
         <>
         
         <div>
             <h1>Produtos</h1>    
+        </div>
+
+        <div>
+            <button onClick={()=> setCounter(counter + 1)}>COUNTER - {counter}</button>
+        </div>
+
+        <div>
+        <button onClick={()=> setCounter2(counter2 + 1)}>COUNTER2 - {counter2}</button>
         </div>
 
         <table className={style.tblEstilo}>
@@ -33,7 +56,7 @@ export default function Produtos(){
 
             <tbody>
             {
-                ListaProdutos.map((item,indice)=>(
+                setListaProdutosLocal.map((item,indice)=>(
                     <tr key={indice} className={style.tblLine}>
                         <td>{item.id}</td>
                         <td>{item.nome}</td>
