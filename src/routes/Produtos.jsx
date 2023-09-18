@@ -11,7 +11,7 @@ export default function Produtos(){
 
     useEffect(()=>{
         console.log("Este useEffect renderiza sempre")
-    })
+    });
 
     const [counter, setCounter] = useState(0);
 
@@ -40,7 +40,7 @@ export default function Produtos(){
         </div>
 
         <div>
-        <button onClick={()=> setCounter2(counter2 + 1)}>COUNTER2 - {counter2}</button>
+            <button onClick={()=> setCounter2(counter2 + 1)}>COUNTER2 - {counter2}</button>
         </div>
 
         <table className={style.tblEstilo}>
@@ -56,7 +56,7 @@ export default function Produtos(){
 
             <tbody>
             {
-                setListaProdutosLocal.map((item,indice)=>(
+                listaProdutosLocal.map((item,indice)=>(
                     <tr key={indice} className={style.tblLine}>
                         <td>{item.id}</td>
                         <td>{item.nome}</td>
