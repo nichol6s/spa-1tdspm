@@ -22,7 +22,7 @@ export default function Produtos(){
         setListaProdutosLocal(ListaProdutos);
     }, [ ]);
 
-    const [counter2, setCounter2] = useState();
+    const [counter2, setCounter2] = useState(0);
 
     useEffect(()=>{
         console.log("Este useEffect renderiza sempre que o objeto variável ou elemento que esta sendo monitorado no array de dependências sofra alguma atualização. ");
