@@ -16,9 +16,9 @@ export default function EditarProdutos(){
 
     const [produto, setProduto] = useState({
         id: produtoRecuperadoDaListaById[0].id,
-        nome: produtoRecuperadoDaListaById[0].id,
-        desc: produtoRecuperadoDaListaById[0].id,
-        valor: produtoRecuperadoDaListaById[0].id,
+        nome: produtoRecuperadoDaListaById[0].nome,
+        desc: produtoRecuperadoDaListaById[0].desc,
+        valor: produtoRecuperadoDaListaById[0].valor,
     })
 
     const handleChange = (event) =>{
