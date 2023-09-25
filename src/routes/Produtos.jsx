@@ -1,16 +1,37 @@
 import { Link } from "react-router-dom";
 import { ListaProdutos } from "../components/ListaProdutos";
-import {GrFormEdit as Editar} from "react-icons/gr";
-import {RiDeleteBin2Fill as Excluir} from "react-icons/ri";
+import { GrFormEdit as Editar } from "react-icons/gr";
+import { RiDeleteBin2Fill as Excluir } from "react-icons/ri";
 import style from "./Produtos.module.css";
+import { useEffect, useState } from "react";
 
 export default function Produtos() {
-  document.title = "Produtos";
+    document.title = "Produtos";
+
+    const [listaProdutoExterna, setListaProdutoExterna] = useState([{}]);
+    useEffect(()=>{
+
+    
+    fetch("http://localhost:5000/produtos", {
+        method: "GET",
+        headers:{
+            "Content-Type":"äpplication/json"
+        }
+    })
+    .then((response)=> response.json())
+    .then((data) => {
+      setListaProdutoExterna(data);
+    })
+    .catch(error => console.log(error));
+
+    },[]);
+
+
 
     return (
         <div>
             <h1>LISTA DE PRODUTOS</h1>
-            
+
             <table className={style.tblEstilo}>
                 <thead>
                     <tr>
@@ -25,7 +46,7 @@ export default function Produtos() {
 
                 <tbody>
                     {
-                        ListaProdutos.map((item, indice) => (
+                        listaProdutoExterna.map((item, indice) => (
                             <tr key={indice} className={style.tblLine}>
                                 <td>{item.id}</td>
                                 <td>{item.nome}</td>
