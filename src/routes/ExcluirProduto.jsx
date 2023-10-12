@@ -9,30 +9,44 @@ export default function ExcluirProduto() {
   const { id } = useParams();
   const navigate = useNavigate()
 
-  const produtoRecuperadoDaListaById = ListaProdutos.filter(
-    (item) => item.id == id
-  );
-
-  const [produto] = useState({
-    id: produtoRecuperadoDaListaById[0].id,
-    nome: produtoRecuperadoDaListaById[0].nome,
-    desc: produtoRecuperadoDaListaById[0].desc,
-    valor: produtoRecuperadoDaListaById[0].valor,
+  const [produto, setProdutos] = useState({
+    id: "",
+    nome: "",
+    desc: "",
+    valor: "",
   });
 
   const handleExclude = (event) => {
     event.preventDefault();
 
-    let indice;
-    ListaProdutos.forEach((item, index) => {
-      if (item.id == produto.id) {
-        indice = index;
-      }
-    });
-
-    ListaProdutos.splice(indice, 1);
-    navigate("/produtos");
+    fetch(`http://localhost:5000/produtos/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((produto) => {
+        // Atualizar o estado do componente com a nova lista de produtos
+        setProdutos(produto);
+        navigate("/produtos");
+      })
+      .catch(error => console.log(error));
   };
+
+  // useEffect(() => {
+  //   // Obter a lista de produtos
+  //   fetch("http://localhost:5000/produtos")
+  //     .then((response) => response.json())
+  //     .then((produto) => {
+  //       setProdutos(produto);
+  //     })
+  // }, []);
+
+  // useEffect(() => {
+  //   // Verificar se o ID do produto existe
+  //   const produtoExcluido = produto.find((produto) => produto.id === id);
+  //   if (produtoExcluido === undefined) {
+  //     throw new Error("O produto não existe");
+  //   }
+  // }, [id]);
 
   return (
     
