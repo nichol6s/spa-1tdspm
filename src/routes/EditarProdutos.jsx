@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { ListaProdutos } from "../components/ListaProdutos";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function EditarProdutos(){
 
@@ -24,6 +24,16 @@ export default function EditarProdutos(){
         setProduto({...produto, [name]:value})
 
     }
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/produtos/${id}`)
+          .then((response) => response.json())
+          .then((produto) => {
+            // Atualizar o estado do componente com os detalhes do produto
+            setProduto(produto);
+          })
+          .catch((error) => console.log(error));
+      }, [id]);
 
     const handleSubmit = (e) =>{
         e.preventDefault();

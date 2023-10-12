@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
-import { ListaProdutos } from "../components/ListaProdutos";
+import { useState, useEffect } from "react";
+//import { ListaProdutos } from "../components/ListaProdutos";
 import classes from "./ExcluirProduto.module.css"
 
 export default function ExcluirProduto() {
@@ -9,12 +9,22 @@ export default function ExcluirProduto() {
   const { id } = useParams();
   const navigate = useNavigate()
 
-  const [produto, setProdutos] = useState({
+  const [produto, setProduto] = useState({
     id: "",
     nome: "",
     desc: "",
     valor: "",
   });
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/produtos/${id}`)
+      .then((response) => response.json())
+      .then((produto) => {
+        // Atualizar o estado do componente com os detalhes do produto
+        setProduto(produto);
+      })
+      .catch((error) => console.log(error));
+  }, [id]);
 
   const handleExclude = (event) => {
     event.preventDefault();
@@ -25,28 +35,11 @@ export default function ExcluirProduto() {
       .then((response) => response.json())
       .then((produto) => {
         // Atualizar o estado do componente com a nova lista de produtos
-        setProdutos(produto);
+        setProduto(produto);
         navigate("/produtos");
       })
       .catch(error => console.log(error));
   };
-
-  // useEffect(() => {
-  //   // Obter a lista de produtos
-  //   fetch("http://localhost:5000/produtos")
-  //     .then((response) => response.json())
-  //     .then((produto) => {
-  //       setProdutos(produto);
-  //     })
-  // }, []);
-
-  // useEffect(() => {
-  //   // Verificar se o ID do produto existe
-  //   const produtoExcluido = produto.find((produto) => produto.id === id);
-  //   if (produtoExcluido === undefined) {
-  //     throw new Error("O produto não existe");
-  //   }
-  // }, [id]);
 
   return (
     
